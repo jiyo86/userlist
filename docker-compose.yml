@@ -6,8 +6,8 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./react:/react
-      - /react/node_modules
+      - ./userlist:/userlist
+      - /userlist/node_modules
     links:
       - server
     networks: appnetwork
