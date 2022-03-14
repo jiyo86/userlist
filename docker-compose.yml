@@ -1,37 +1,38 @@
 version: "2"
 services:
-    client:
-        image: reactapp
-        restart: always
-        ports:
-            - "3000:3000"
-        volumes:
-            - ./react:/react
-            - /react/node_modules
-        links:
-            - server
-        networks:
-            appnetwork
-    server:
-        image: nodeapp
-        restart: always
-        ports:
-            - "9000:9000"
-        volumes:
-            - ./server:/server
-            - /server/node_modules
-        depends_on:
-            - mongodb
-        networks:
-            appnetwork
-    mongodb:
-        image: mongo
-        restart: always
-        container_name: mongodb
-        volumes:
-            - ./data-node:/data/db
-        ports:
-            - 27017:27017
-        command: mongod --noauth --smallfiles
-        networks:
-            - appnetwork
+  client:
+    image: reactapp
+    restart: always
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./react:/react
+      - /react/node_modules
+    links:
+      - server
+    networks: appnetwork
+  server:
+    image: nodeapp
+    restart: always
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./server:/server
+      - /server/node_modules
+    depends_on:
+      - mongodb
+    networks: appnetwork
+  mongodb:
+    image: mongo
+    restart: always
+    container_name: mongodb
+    volumes:
+      - ./data-node:/data/db
+    ports:
+      - 27017:27017
+    command: mongod --noauth --smallfiles
+    networks:
+      - appnetwork
+networks:
+  appnetwork:
+    driver: bridge
