@@ -10,7 +10,8 @@ services:
       - /userlist/node_modules
     links:
       - server
-    networks: appnetwork
+    networks:
+      - appnetwork
   server:
     image: nodeapp
     restart: always
@@ -21,7 +22,8 @@ services:
       - /server/node_modules
     depends_on:
       - mongodb
-    networks: appnetwork
+    networks:
+      - appnetwork
   mongodb:
     image: mongo
     restart: always
